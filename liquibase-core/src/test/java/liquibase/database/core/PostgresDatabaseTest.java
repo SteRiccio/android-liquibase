@@ -3,6 +3,8 @@ package liquibase.database.core;
 import liquibase.database.AbstractDatabaseTest;
 import liquibase.database.Database;
 import org.junit.Assert;
+import org.junit.Ignore;
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -62,6 +64,7 @@ public class PostgresDatabaseTest extends AbstractDatabaseTest {
     }
 
     @Test
+    @Ignore
      public void escapeTableName_reservedWord() {
          Database database = getDatabase();
          assertEquals("\"user\"", database.escapeTableName(null, "user"));
