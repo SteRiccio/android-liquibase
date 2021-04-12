@@ -17,7 +17,9 @@ import java.sql.Timestamp;
 
 public class LockDatabaseChangeLogGenerator extends AbstractSqlGenerator<LockDatabaseChangeLogStatement> {
 
-    public ValidationErrors validate(LockDatabaseChangeLogStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
+    private static final String ANDROID_RUNTIME = "Android Runtime";
+
+	public ValidationErrors validate(LockDatabaseChangeLogStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
         return new ValidationErrors();
     }
 
@@ -25,7 +27,8 @@ public class LockDatabaseChangeLogGenerator extends AbstractSqlGenerator<LockDat
     private static String hostaddress;
 
     private static boolean isAndroid() {
-		return "android runtime".equals(System.getProperty("java.runtime.name"));
+		String javaRuntimeName = System.getProperty("java.runtime.name");
+		return ANDROID_RUNTIME.equalsIgnoreCase(javaRuntimeName);
 	}
     
     static {
