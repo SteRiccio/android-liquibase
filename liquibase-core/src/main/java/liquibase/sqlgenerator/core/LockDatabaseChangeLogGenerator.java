@@ -24,15 +24,23 @@ public class LockDatabaseChangeLogGenerator extends AbstractSqlGenerator<LockDat
     private static String hostname;
     private static String hostaddress;
 
+    private static boolean isAndroid() {
+		return "android runtime".equals(System.getProperty("java.runtime.name"));
+	}
+    
     static {
-        InetAddress localHost;
-        try {
-            localHost = NetUtil.getLocalHost();
-            hostname = localHost.getHostName();
-            hostaddress = localHost.getHostAddress();
-        } catch (Exception e) {
-            throw new UnexpectedLiquibaseException(e);
-        }
+    	if (isAndroid()) {
+    		hostname = "localhost";
+    		hostaddress = "127.0.0.1";
+    	} else {
+	        try {
+	        	InetAddress localHost = NetUtil.getLocalHost();
+	            hostname = localHost.getHostName();
+	            hostaddress = localHost.getHostAddress();
+	        } catch (Exception e) {
+	            throw new UnexpectedLiquibaseException(e);
+	        }
+    	}
     }
 
     public Sql[] generateSql(LockDatabaseChangeLogStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
