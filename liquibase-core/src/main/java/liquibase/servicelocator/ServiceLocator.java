@@ -108,6 +108,7 @@ import liquibase.sqlgenerator.core.AddForeignKeyConstraintGenerator;
 import liquibase.sqlgenerator.core.AddPrimaryKeyGenerator;
 import liquibase.sqlgenerator.core.AddUniqueConstraintGenerator;
 import liquibase.sqlgenerator.core.AlterSequenceGenerator;
+import liquibase.sqlgenerator.core.AndroidLockDatabaseChangeLogGenerator;
 import liquibase.sqlgenerator.core.ClearDatabaseChangeLogTableGenerator;
 import liquibase.sqlgenerator.core.CommentGenerator;
 import liquibase.sqlgenerator.core.CopyRowsGenerator;
@@ -130,7 +131,6 @@ import liquibase.sqlgenerator.core.DropViewGenerator;
 import liquibase.sqlgenerator.core.GetNextChangeSetSequenceValueGenerator;
 import liquibase.sqlgenerator.core.GetViewDefinitionGenerator;
 import liquibase.sqlgenerator.core.InsertGenerator;
-import liquibase.sqlgenerator.core.LockDatabaseChangeLogGenerator;
 import liquibase.sqlgenerator.core.MarkChangeSetRanGenerator;
 import liquibase.sqlgenerator.core.ModifyDataTypeGenerator;
 import liquibase.sqlgenerator.core.RawSqlGenerator;
@@ -474,6 +474,7 @@ public class ServiceLocator {
 //					AddUniqueConstraintGeneratorInformix.class,
 //					AddUniqueConstraintGeneratorTDS.class,
 					AlterSequenceGenerator.class,
+					AndroidLockDatabaseChangeLogGenerator.class,
 					ClearDatabaseChangeLogTableGenerator.class,
 					CommentGenerator.class,
 					CopyRowsGenerator.class,
@@ -524,7 +525,7 @@ public class ServiceLocator {
 //					InsertOrUpdateGeneratorMySQL.class,
 //					InsertOrUpdateGeneratorOracle.class,
 //					InsertOrUpdateGeneratorPostgres.class,
-					LockDatabaseChangeLogGenerator.class,
+					//LockDatabaseChangeLogGenerator.class,
 					MarkChangeSetRanGenerator.class,
 					ModifyDataTypeGenerator.class,
 					RawSqlGenerator.class,
