@@ -1154,7 +1154,7 @@ public class SystemUtils {
      * @return the version, for example 1.31f for JDK 1.3.1
      */
     private static float getJavaVersionAsFloat() {
-        if (JAVA_VERSION_TRIMMED == null) {
+        if (JAVA_VERSION_TRIMMED == null || JAVA_VERSION_TRIMMED.length() == 0 || JAVA_VERSION_TRIMMED.equals("0")) {
             return 0f;
         }
         String str = JAVA_VERSION_TRIMMED.substring(0, 3);
