@@ -1139,6 +1139,10 @@ public class SystemUtils {
         return JAVA_VERSION_FLOAT;
     }
 
+	private static boolean isJavaVersionEmpty() {
+		return JAVA_VERSION_TRIMMED == null || JAVA_VERSION_TRIMMED.length() == 0 || JAVA_VERSION_TRIMMED.equalsIgnoreCase("0");
+	}
+	
     /**
      * <p>Gets the Java version number as a <code>float</code>.</p>
      *
@@ -1154,7 +1158,7 @@ public class SystemUtils {
      * @return the version, for example 1.31f for JDK 1.3.1
      */
     private static float getJavaVersionAsFloat() {
-        if (JAVA_VERSION_TRIMMED == null || JAVA_VERSION_TRIMMED.length() == 0 || JAVA_VERSION_TRIMMED.equals("0")) {
+        if (isJavaVersionEmpty()) {
             return 0f;
         }
         String str = JAVA_VERSION_TRIMMED.substring(0, 3);
@@ -1183,7 +1187,7 @@ public class SystemUtils {
      * @return the version, for example 131 for JDK 1.3.1
      */
     private static int getJavaVersionAsInt() {
-        if (JAVA_VERSION_TRIMMED == null) {
+        if (isJavaVersionEmpty()) {
             return 0;
         }
         String str = JAVA_VERSION_TRIMMED.substring(0, 1);
