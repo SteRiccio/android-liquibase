@@ -12,6 +12,7 @@ import liquibase.exception.ChangeLogParseException;
 import liquibase.logging.LogFactory;
 import liquibase.parser.ChangeLogParser;
 import liquibase.resource.ResourceAccessor;
+import liquibase.util.SystemUtils;
 import liquibase.util.file.FilenameUtils;
 
 import org.xml.sax.ErrorHandler;
@@ -29,7 +30,7 @@ public class XMLChangeLogSAXParser implements ChangeLogParser {
     public XMLChangeLogSAXParser() {
         saxParserFactory = SAXParserFactory.newInstance();
 
-        if (System.getProperty("java.vm.version").startsWith("1.4")) {
+        if (SystemUtils.IS_JAVA_1_4 || SystemUtils.IS_OS_ANDROID) {
             saxParserFactory.setValidating(false);
             saxParserFactory.setNamespaceAware(false);
         } else {

@@ -1102,6 +1102,12 @@ public class SystemUtils {
      */
     public static final boolean IS_OS_WINDOWS_7 = getOSMatches(OS_NAME_WINDOWS_PREFIX, "6.1");
 
+    /**
+     * <p>Is <code>true</code> if this is Android OS.</p>
+     *
+     */
+    public static final boolean IS_OS_ANDROID = JAVA_RUNTIME_NAME.equalsIgnoreCase("Android Runtime");
+    
     //-----------------------------------------------------------------------
     /**
      * <p>SystemUtils instances should NOT be constructed in standard

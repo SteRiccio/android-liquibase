@@ -1,23 +1,21 @@
 package liquibase.sqlgenerator.core;
 
+import java.net.InetAddress;
+import java.sql.Timestamp;
+
 import liquibase.database.Database;
 import liquibase.database.typeconversion.TypeConverterFactory;
 import liquibase.exception.UnexpectedLiquibaseException;
 import liquibase.exception.ValidationErrors;
 import liquibase.sql.Sql;
-import liquibase.sqlgenerator.SqlGenerator;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
 import liquibase.statement.core.LockDatabaseChangeLogStatement;
 import liquibase.statement.core.UpdateStatement;
 import liquibase.util.NetUtil;
-
-import java.net.InetAddress;
-import java.sql.Timestamp;
+import liquibase.util.SystemUtils;
 
 public class LockDatabaseChangeLogGenerator extends AbstractSqlGenerator<LockDatabaseChangeLogStatement> {
-
-    private static final String ANDROID_RUNTIME = "Android Runtime";
 
 	public ValidationErrors validate(LockDatabaseChangeLogStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
         return new ValidationErrors();
@@ -26,13 +24,8 @@ public class LockDatabaseChangeLogGenerator extends AbstractSqlGenerator<LockDat
     private static String hostname;
     private static String hostaddress;
 
-    private static boolean isAndroid() {
-		String javaRuntimeName = System.getProperty("java.runtime.name");
-		return ANDROID_RUNTIME.equalsIgnoreCase(javaRuntimeName);
-	}
-    
     static {
-    	if (isAndroid()) {
+    	if (SystemUtils.IS_OS_ANDROID) {
     		hostname = "localhost";
     		hostaddress = "127.0.0.1";
     	} else {
