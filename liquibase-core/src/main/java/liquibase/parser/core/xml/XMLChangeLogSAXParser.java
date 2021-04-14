@@ -30,13 +30,11 @@ public class XMLChangeLogSAXParser implements ChangeLogParser {
     public XMLChangeLogSAXParser() {
         saxParserFactory = SAXParserFactory.newInstance();
 
-        if (SystemUtils.IS_JAVA_1_4 || SystemUtils.IS_OS_ANDROID) {
-            saxParserFactory.setValidating(false);
-            saxParserFactory.setNamespaceAware(false);
-        } else {
-            saxParserFactory.setValidating(true);
-            saxParserFactory.setNamespaceAware(true);
-        }
+        boolean validating = !SystemUtils.IS_JAVA_1_4 && !SystemUtils.IS_OS_ANDROID;
+        boolean namespaceAware = !SystemUtils.IS_JAVA_1_4;
+        
+        saxParserFactory.setValidating(validating);
+        saxParserFactory.setNamespaceAware(namespaceAware);
     }
 
     public int getPriority() {
